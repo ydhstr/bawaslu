@@ -10,7 +10,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item active">Data Staff</li>
             </ol>
           </div>
@@ -36,16 +36,27 @@
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title">Data Staff</h2>
+                {{-- <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+        
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div> --}}
               </div>
               <div class="container">
                 {{-- search --}}
-                <div class="row g-3 align-items-center mb-4">
+                {{-- <div class="row g-3 align-items-center mb-4">
                     <div class="col-auto">
                         <form action="/staf" method="GET">
                             <input type="text" id="search" name="search" class="form-control" placeholder="Search">
                         </form>
-                    </div>
-                    <div class="col-auto">
+                    </div> --}}
+                    <div class="col-auto d-flex justify-content-end  mt-2">
                         <a href="{{ route('staf.create') }}" class="btn btn-success">
                             Tambah Data
                         </a>
@@ -75,15 +86,13 @@
                         <td class="px-6 py-2">{{ $item->instansi }}</td>
                         <td class="px-6 py-2">{{ $item->dpt_bagian }}</td>
                         <td>
-                          <div class="btn-group">
-                              <a href="{{ route('staf.edit', $item->id) }}" class="btn btn-primary" style="margin-right: 10px;">
-                                  Edit
-                              </a>
-                              <form action="{{ route('staf.destroy', $item->id) }}" method="POST">
+                            <a href="{{ route('staf.edit', $item->id) }}" class="btn btn-primary">
+                              Edit
+                          </a>
+                              <form action="{{ route('staf.destroy', $item->id) }}" method="POST" style="display: inline">
                                   {!! method_field('delete') . csrf_field() !!}
                                   <button type="submit" class="btn btn-danger">Hapus</button>
                               </form>
-                          </div>
                       </td>                      
                     </tr>
                     @endforeach

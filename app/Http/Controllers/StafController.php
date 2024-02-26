@@ -11,9 +11,9 @@ class StafController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $datastaf = Staf::where('nama', 'LIKE', '%' .$request->search.'%')->paginate(10);
+            $datastaf = Staf::where('nama', 'LIKE', '%' .$request->search.'%')->simplePaginate(10);
         }else{
-            $datastaf = Staf::paginate(10);
+            $datastaf = Staf::simplePaginate(10);
         }
         return view('staf.index',[
             'datastaf' => $datastaf
@@ -79,10 +79,10 @@ class StafController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Staf $datastaf)
+    public function edit(Staf $staf)
     {
         return view('staf.edit', [
-            'item' => $datastaf
+            'item' => $staf
         ]);
     }
 
@@ -94,11 +94,11 @@ class StafController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, Staf $datastaf)
+    public function update(Request $request, Staf $staf)
     {
         $data = $request->all();
 
-        $datastaf->update($data);
+        $staf->update($data);
 
         //dd($data);
 
@@ -112,9 +112,9 @@ class StafController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(staf $datastaf)
+    public function destroy(staf $staf)
     {
-        $datastaf->delete();
+        $staf->delete();
         return redirect()->route('staf.index')->with('toast_success', 'Data telah berubah');
     }
 }

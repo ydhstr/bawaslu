@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Staf extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     protected $fillable = [
         'nama', 'jabatan', 'instansi','dpt_bagian'
     ];

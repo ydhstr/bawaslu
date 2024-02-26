@@ -11,9 +11,9 @@ class Petugas_lapanganController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $datapetugas = Petugas_lapangan::where('nama', 'LIKE', '%' .$request->search.'%')->paginate(10);
+            $datapetugas = Petugas_lapangan::where('nama', 'LIKE', '%' .$request->search.'%')->simplePaginate(10);
         }else{
-            $datapetugas = Petugas_lapangan::paginate(10);
+            $datapetugas = Petugas_lapangan::simplePaginate(10);
         }
         return view('petugas.index',[
             'datapetugas' => $datapetugas
@@ -35,7 +35,7 @@ class Petugas_lapanganController extends Controller
     public function create()
     {
        $datapetugas = Petugas_lapangan::all();
-        return view('staf.create', [
+        return view('petugas.create', [
             'datapetugas' => $datapetugas,
         ]);
     }
@@ -54,8 +54,7 @@ class Petugas_lapanganController extends Controller
             Petugas_lapangan::create([
                 'nama' => $datapetugas["nama"][$i],
                 'jabatan' => $datapetugas["jabatan"][$i],
-                'instansi' => $datapetugas["instansi"][$i],
-                'dpt_bagian' => $datapetugas["dpt_bagian"][$i],
+                'email' => $datapetugas["email"][$i]
             ]);
         }
 
@@ -79,10 +78,10 @@ class Petugas_lapanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Petugas_lapangan $datapetugas)
+    public function edit(Petugas_lapangan $petuga)
     {
         return view('petugas.edit', [
-            'item' => $datapetugas
+            'item' => $petuga
         ]);
     }
 
@@ -94,11 +93,11 @@ class Petugas_lapanganController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, Petugas_lapangan $datapetugas)
+    public function update(Request $request, Petugas_lapangan $petuga)
     {
         $data = $request->all();
 
-        $datapetugas->update($data);
+        $petuga->update($data);
 
         //dd($data);
 
@@ -112,9 +111,9 @@ class Petugas_lapanganController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Petugas_lapangan $datapetugas)
+    public function destroy(Petugas_lapangan $petuga)
     {
-        $datapetugas->delete();
+        $petuga->delete();
         return redirect()->route('petugas.index')->with('toast_success', 'Data telah berubah');
     }
 }

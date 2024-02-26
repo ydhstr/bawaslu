@@ -56,19 +56,19 @@
                                     <div class="form-group">
                                         <label for="name">Nama</label>
                                         <input value="{{ old('nama') }}" name="nama[]" class="form-control"
-                                        id="nama" type="text" placeholder="Nama">
+                                        id="nama" type="text" placeholder="Nama" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="jabatan">Jabatan</label>
-                                        <input value="{{ old('jabatan') }}" name="jabatan[]" type="text" class="form-control" id="jabatan" placeholder="Jabatan">
+                                        <input value="{{ old('jabatan') }}" name="jabatan[]" type="text" class="form-control" id="jabatan" placeholder="Jabatan" required>
                                     </div>
                                     <div class="form-group">
                                             <label for="instansi">Instansi</label>
-                                            <input value="{{ old('instansi') }}" name="instansi[]" type="text" class="form-control" id="instansi" placeholder="Instansi">
+                                            <input value="{{ old('instansi') }}" name="instansi[]" type="text" class="form-control" id="instansi" placeholder="Instansi" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="dpt_bagian">Departemen Bagian</label>
-                                            <input value="{{ old('dpt_bagian') }}" name="dpt_bagian[]" type="text" class="form-control" id="dpt_bagian" placeholder="">
+                                            <input value="{{ old('dpt_bagian') }}" name="dpt_bagian[]" type="text" class="form-control" id="dpt_bagian" placeholder="" required>
                                         </div>
                                 </div>
                                 <!-- /.card-body -->

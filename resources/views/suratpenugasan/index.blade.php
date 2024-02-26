@@ -6,12 +6,12 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h1>Surat Tugas</h1>
+                <h1>Surat Penugasan Lapangan</h1>
               </div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                  <li class="breadcrumb-item active">Surat Tugas</li>
+                  <li class="breadcrumb-item active">Surat Penugasan Lapangan</li>
                 </ol>
               </div>
             </div>
@@ -35,7 +35,7 @@
                 <div class="col-12">
                   <div class="card">
                     <div class="card-header">
-                      <h2 class="card-title">Data Surat Tugas</h2>
+                      <h2 class="card-title">Data Surat Penugasan Lapangan</h2>
                       {{-- <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                           <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -57,7 +57,7 @@
                               </form>
                           </div> --}}
                           <div class="col-auto d-flex justify-content-end mt-2">
-                              <a href="{{ route('surattugas.create') }}" class="btn btn-success">
+                              <a href="{{ route('suratpenugasan.create') }}" class="btn btn-success">
                                   Tambah Data
                               </a>
                           </div>
@@ -72,32 +72,32 @@
                 <th>Tanggal Pelaksanaan</th>
                 <th>Tujuan Lokasi</th>
                 <th>Deskripsi</th>
-                <th>Staff</th>
+                <th>Petugas Lapangan</th>
               </tr>
             </thead>
             <tbody>
               @php
                     $no=1;
                     @endphp
-                    @foreach ($surattugas as $index => $item)
+                    @foreach ($suratpenugasan as $index => $item)
                     <tr>
-                        <th class="px-6 py-2">{{ $index + $surattugas->firstItem() }}</th>
+                        <th class="px-6 py-2">{{ $index + $suratpenugasan->firstItem() }}</th>
                         <td class="px-6 py-2">{{ $item->nosurat }}</td>
                         <td class="px-6 py-2">{{ $item->tgltugas }}</td>
                         <td class="px-6 py-2">{{ $item->tglpelaksana }}</td>
                         <td class="px-6 py-2">{{ $item->tujuan }}</td>
                         <td class="px-6 py-2">{{ $item->deskripsi }}</td>
-                        <td class="px-6 py-2">{{ $item->staf->nama }}</td>
+                        <td class="px-6 py-2">{{ $item->petugas_lapangan->nama }}</td>
                         <td class="project-actions text-right">
                           <div class="btn-group btn-group-sm">
-                          <a href="{{ route('surattugas.show', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
-                            <a href="{{ route('surattugas.edit', $item->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                          <a href="{{ route('suratpenugasan.show', $item->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
+                            <a href="{{ route('suratpenugasan.edit', $item->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <form action="{{ route('suratpenugasan.destroy', $item->id) }}" method="POST" style="display: inline">
+                              {!! method_field('delete') . csrf_field() !!}
+                              <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                            </form>
                               <!-- <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                               <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a> -->
-                              <form action="{{ route('surattugas.destroy', $item->id) }}" method="POST" style="display: inline">
-                                {!! method_field('delete') . csrf_field() !!}
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                            </form>
                           </div>
                       </td>
                     </tr>
@@ -105,7 +105,7 @@
                   </tbody>
                 </table>
                 <div class="text-center mt-5">
-                  {{ $surattugas->withQueryString()->links() }}
+                  {{ $suratpenugasan->withQueryString()->links() }}
                   </div>
         </div>
         <!-- /.card-body -->
@@ -119,7 +119,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Data Staff</h3>
+        <h3 class="card-title">Data Petugas Lapangan</h3>
 
         <div class="card-tools">
           {{-- <div class="input-group input-group-sm" style="width: 150px;">
@@ -141,7 +141,6 @@
               <th>No</th>
               <th>Nama</th>
               <th>Jabatan</th>
-              <th>Bagian</th>
               <th>Tanggal Mulai</th>
               <th>Tanggal Selesai</th>
               <th>Status</th>
@@ -151,16 +150,15 @@
             @php
                     $no=1;
                     @endphp
-                    @foreach ($surattugas as $index => $item)
+                    @foreach ($suratpenugasan as $index => $item)
                     <tr>
-                        <th class="px-6 py-2">{{ $index + $surattugas->firstItem() }}</th>
-                        <td class="px-6 py-2">{{ $item->staf->nama }}</td>
-                        <td class="px-6 py-2">{{ $item->staf->jabatan }}</td>
-                        <td class="px-6 py-2">{{ $item->staf->instansi }}</td>
+                        <th class="px-6 py-2">{{ $index + $suratpenugasan->firstItem() }}</th>
+                        <td class="px-6 py-2">{{ $item->petugas_lapangan->nama }}</td>
+                        <td class="px-6 py-2">{{ $item->petugas_lapangan->jabatan }}</td>
                         <td class="px-6 py-2">{{ $item->tglmulai }}</td>
                         <td class="px-6 py-2">{{ $item->tglselesai }}</td>
                         <td class="px-6 py-2">{{ $item->status }}</td>
-                        {{-- <td>
+                        <!-- <td>
                             <a href="{{ route('surattugas.edit', $item->id) }}" class="btn btn-primary">
                               Edit
                           </a>
@@ -168,14 +166,14 @@
                                   {!! method_field('delete') . csrf_field() !!}
                                   <button type="submit" class="btn btn-danger">Hapus</button>
                               </form>
-                      </td> --}}
+                      </td> -->
                     </tr>
                     @endforeach
                   </tbody>
                 </table>
                 <div class="text-center mt-5">
-                {{ $surattugas->withQueryString()->links() }}
-                </div>
+                  {{ $suratpenugasan->withQueryString()->links() }}
+                  </div>
       </div>
       <!-- /.card-body -->
     </div>

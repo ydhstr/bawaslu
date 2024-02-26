@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Petugas_lapangan extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     protected $fillable = [
-        'nama', 'jabatan', 'emails'
+        'nama', 'jabatan', 'email'
     ];
 }

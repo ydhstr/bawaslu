@@ -35,7 +35,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="/" class="nav-link active">
+            <a href="/dashboard" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -45,13 +45,13 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('staf.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-user-plus nav-icon"></i>
                   <p>Staff</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('petugas.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-users nav-icon"></i>
                   <p>Petugas Lapangan</p>
                 </a>
               </li>
@@ -65,15 +65,15 @@
           </li>
           <li class="nav-header">Surat</li>
           <li class="nav-item">
-            <a href="/surattugas/index" class="nav-link">
+            <a href="{{ route('surattugas.index') }}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Surat Tugas
               </p>
             </a>
           </li>
-         {{--  <li class="nav-item">
-            <a href="#" class="nav-link">
+          <li class="nav-item">
+            <a href="{{ route('suratpenugasan.index') }}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Surat Penugasan
@@ -81,7 +81,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('penerimaan.index') }}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Penerimaan Laporan
@@ -89,13 +89,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('evaluasi.index') }}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Evaluasi Pelaksanaan
               </p>
             </a>
-          </li> --}}
+          </li>
           {{-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -275,38 +275,50 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/mailbox/mailbox.html" class="nav-link">
+                <a href="/laporan/lp-surattugas" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Surat Tugas</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/mailbox/compose.html" class="nav-link">
+                <a href="/laporan/lp-suratpenugasan" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Surat Penugasan</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/mailbox/read-mail.html" class="nav-link">
+                <a href="/laporan/lp-penerimaan" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Penerimaan</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/mailbox/read-mail.html" class="nav-link">
+                <a href="/laporan/lp-evaluasi" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Evaluasi</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/mailbox/read-mail.html" class="nav-link">
+                <a href="/laporan/lp-performa" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Laporan Peforma Petugas</p>
                 </a>
               </li>
             </ul>
           </li>
-         
+          <li class="nav-item">
+          <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <div class="nav-item">
+                  <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                              this.closest('form').submit(); ">
+                      <i class="fas fa-sign-out-alt nav-icon"></i>
+                      <p>Log Out</p>
+                      <!-- {{ __('Log Out') }} -->
+                  </a>
+              </div>
+          </form>
+        </li>
          {{--  <li class="nav-item">
             <a href="https://adminlte.io/docs/3.1/" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
@@ -332,11 +344,11 @@
               <p>Informational</p>
             </a>
           </li> --}}
-          
-        </ul>
-      </nav> 
 
-    
+        </ul>
+      </nav>
+
+
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

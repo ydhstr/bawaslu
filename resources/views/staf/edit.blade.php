@@ -49,28 +49,26 @@
                                 </div>
                                 @endif
                             <!-- form start -->
-                            <form action="{{ route('staf.update', $item->id) }}" class="w-full" method="POST"
-                    enctype="multipart/form-data">
+                            <form action="{{ route('staf.update', $item->id) }}" method="POST">
                                 @csrf
-                               {{--  @method('PUT') --}}
-
+                                @method('PUT')
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">Nama</label>
-                                        <input value="{{ old('nama') }}" name="nama" class="form-control"
+                                        <input value="{{ $item->nama }}" name="nama" class="form-control"
                                         id="nama" type="text" placeholder="Nama">
                                     </div>
                                     <div class="form-group">
                                         <label for="jabatan">Jabatan</label>
-                                        <input value="{{ old('jabatan') }}" name="jabatan" type="text" class="form-control" id="jabatan" placeholder="Jabatan">
+                                        <input value="{{ $item->jabatan }}" name="jabatan" type="text" class="form-control" id="jabatan" placeholder="Jabatan">
                                     </div>
                                     <div class="form-group">
                                             <label for="instansi">Instansi</label>
-                                            <input value="{{ old('instansi') }}" name="instansi" type="text" class="form-control" id="instansi" placeholder="Instansi">
+                                            <input value="{{ $item->instansi }}" name="instansi" type="text" class="form-control" id="instansi" placeholder="Instansi">
                                         </div>
                                         <div class="form-group">
                                             <label for="dpt_bagian">Departemen Bagian</label>
-                                            <input value="{{ old('dpt_bagian') }}" name="dpt_bagian" type="text" class="form-control" id="dpt_bagian" placeholder="">
+                                            <input value="{{ $item->dpt_bagian }}" name="dpt_bagian" type="text" class="form-control" id="dpt_bagian" placeholder="">
                                         </div>
                                 </div>
                                 <!-- /.card-body -->
