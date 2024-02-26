@@ -129,17 +129,23 @@ public function CtkPn(Request $request)
 
     public function getEv(Request $request)
 {
-    $startDate = $request->input('dari');
-    $endDate = $request->input('sampai');
+    try {
+        $startDate = $request->input('dari');
+        $endDate = $request->input('sampai');
 
-    // Lakukan pengolahan data sesuai dengan rentang tanggal yang diterima
-    $evaluasi = Evaluasi::whereDate('created_at', '>=', $startDate)
-                        ->whereDate('created_at', '<=', $endDate)
-                        ->simplePaginate(10);
+        // Lakukan pengolahan data sesuai dengan rentang tanggal yang diterima
+        $evaluasi = Evaluasi::whereDate('created_at', '>=', $startDate)
+                            ->whereDate('created_at', '<=', $endDate)
+                            ->simplePaginate(10);
 
-     session(['evaluasi' => $evaluasi]);
-    // Kembalikan data dalam bentuk yang sesuai (misalnya, dalam bentuk view)
-    return view('laporan.lp-evaluasi', compact('evaluasi'));
+        session(['evaluasi' => $evaluasi]);
+        
+        // Kembalikan data dalam bentuk yang sesuai (misalnya, dalam bentuk view)
+        return view('laporan.lp-evaluasi', compact('evaluasi'));
+    } catch (\Exception $e) {
+        \Log::error('Error occurred while fetching evaluation data: ' . $e->getMessage());
+        return back()->with('errors', $e->messages()->all()[0])->withInput();
+    }
 
 }
 
