@@ -8,6 +8,7 @@ use App\Http\Controllers\SuratpenugasanController;
 use App\Http\Controllers\EvaluasiController;
 use App\Http\Controllers\PenerimaanController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::resource('suratpenugasan', SuratpenugasanController::class);
     Route::resource('penerimaan', PenerimaanController::class);
     Route::resource('evaluasi', EvaluasiController::class);
+    Route::resource('user', UserController::class);
+
 
     /* Route::get('/laporan-st', 'LaporanController@cetakForm')->name('laporan-st'); */
     /* Route::get('/laporan/lp-surattugas', function () {return view('laporan.lp-surattugas');})->name('lp-surattugas'); */
@@ -57,5 +60,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::get('/laporan/cetak/cetak-pn', [LaporanController::class, 'CtkPn'])->name('CtkPn');
     Route::get('/laporan/cetak/cetak-ev', [LaporanController::class, 'CtkEv'])->name('CtkEv');
     Route::get('/laporan/cetak/cetak-pe', [LaporanController::class, 'CtkPe'])->name('CtkPe');
-    
+
 });

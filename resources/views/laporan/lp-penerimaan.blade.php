@@ -113,7 +113,7 @@
     <th>No Surat</th>
     <th>Tanggal Tugas</th>
     <th>Tanggal Pelaksanaan</th>
-    <th>Tujuan Lokasi</th>
+    <th>Total Anggaran</th>
     <th>Deskripsi</th>
     <th>Petugas Lapangan</th>
   </tr>

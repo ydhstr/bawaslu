@@ -53,6 +53,14 @@
               </a>
             </li>
             @endif
+            @if(Auth::guard('web')->user()->role === 'admin')
+            <li class="nav-item">
+              <a href="{{ route('user.index') }}" class="nav-link">
+                <i class="fa fa-user-plus nav-icon"></i>
+                <p>User</p>
+              </a>
+            </li>
+            @endif
             @if(Auth::guard('web')->user()->role === 'supervisor')
             <li class="nav-item">
               <a href="{{ route('staf.index') }}" class="nav-link">
@@ -61,12 +69,30 @@
               </a>
             </li>
             @endif
+            @if(Auth::guard('web')->user()->role === 'supervisor')
             <li class="nav-item">
               <a href="{{ route('petugas.index') }}" class="nav-link">
                 <i class="fa fa-users nav-icon"></i>
                 <p>Petugas Lapangan</p>
               </a>
             </li>
+            @endif
+            @if(Auth::guard('web')->user()->role === 'admin')
+            <li class="nav-item">
+              <a href="{{ route('petugas.index') }}" class="nav-link">
+                <i class="fa fa-users nav-icon"></i>
+                <p>Petugas Lapangan</p>
+              </a>
+            </li>
+            @endif
+            @if(Auth::guard('web')->user()->role === 'staff')
+            <li class="nav-item">
+              <a href="{{ route('petugas.index') }}" class="nav-link">
+                <i class="fa fa-users nav-icon"></i>
+                <p>Petugas Lapangan</p>
+              </a>
+            </li>
+            @endif
             {{-- <li class="nav-item">
               <a href="./index3.html" class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
@@ -155,6 +181,25 @@
           </a>
         </li>
         @endif
+
+        @if(Auth::guard('web')->user()->role === 'user')
+        <li class="nav-item">
+          <a href="{{ route('suratpenugasan.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Surat Penugasan
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('penerimaan.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Penerimaan Laporan
+            </p>
+          </a>
+        </li>
+    @endif
 
         @if(Auth::guard('web')->user()->role === 'admin')
         <li class="nav-header">Report</li>
